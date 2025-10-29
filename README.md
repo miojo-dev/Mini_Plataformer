@@ -1,2 +1,2 @@
 # Mini_Plataformer
- Simple plataformar game inspired on Super Mario
+ Simple plataformer game inspired on Super Mario
