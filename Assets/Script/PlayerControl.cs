@@ -8,13 +8,13 @@ public class PlayerControl : MonoBehaviour
     public int jumpsLeft;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         jumpsLeft = manyJumps;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Movement();
     }
@@ -39,11 +39,16 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag is "Ground" or "Enemy" or "Obstacle")
+        switch (collision.gameObject.tag)
         {
-            jumpsLeft = manyJumps;
+            case "Obstacle" or "Ground":
+                jumpsLeft = manyJumps;
+                break;
+            case "Enemy":
+                Destroy(this.gameObject);
+                break;
         }
     }
 }

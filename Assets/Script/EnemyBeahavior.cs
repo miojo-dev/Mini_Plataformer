@@ -8,12 +8,12 @@ public class EnemyBeahavior : MonoBehaviour
     private bool _isAlive = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         IsAlive();
         Movement();
@@ -36,7 +36,7 @@ public class EnemyBeahavior : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         var collidedObject = collision.gameObject;
         Debug.Log(collidedObject.tag);
@@ -51,9 +51,6 @@ public class EnemyBeahavior : MonoBehaviour
                 collidedObject.GetComponent<Rigidbody2D>().linearVelocityY = 25;
                 collidedObject.GetComponent<PlayerControl>().jumpsLeft =
                     collidedObject.GetComponent<PlayerControl>().manyJumps;
-                break;
-            case "Player":
-                Destroy(collidedObject);
                 break;
         }
     }
