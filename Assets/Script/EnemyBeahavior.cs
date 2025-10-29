@@ -21,23 +21,11 @@ public class EnemyBeahavior : MonoBehaviour
 
     private void Movement()
     {
-        switch (_isMovingLeft)
+        transform.position += _isMovingLeft switch
         {
-            case true:
-            {
-                transform.position += new Vector3(
-                    -speed * Time.deltaTime, 0, 0
-                );
-            }
-                break;
-            case false:
-            {
-                transform.position += new Vector3(
-                    speed * Time.deltaTime, 0, 0
-                );
-            }
-                break;
-        }
+            true => new Vector3(-speed * Time.deltaTime, 0, 0),
+            false => new Vector3(speed * Time.deltaTime, 0, 0)
+        };
     }
 
     private void IsAlive()
@@ -51,6 +39,7 @@ public class EnemyBeahavior : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         var collidedObject = collision.gameObject;
+        Debug.Log(collidedObject.tag);
         switch (collidedObject.tag)
         {
             case "Obstacle":
