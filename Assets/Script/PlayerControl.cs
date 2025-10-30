@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerControl : MonoBehaviour
 {
-    public float speed = 20.0f;
-    public float jumpForce = 50.0f;
+    public float speed = 10f;
+    public float jumpForce = 36f;
     public int manyJumps = 1;
     public int jumpsLeft;
+    private int _lifes = 1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -17,6 +19,18 @@ public class PlayerControl : MonoBehaviour
     private void Update()
     {
         Movement();
+        IsAlive();
+    }
+
+    public bool IsAlive()
+    {
+        if (_lifes <= 0)
+        {
+            Destroy(this.gameObject);
+            return false;
+        }
+
+        return true;
     }
 
     private void Movement()
@@ -47,8 +61,13 @@ public class PlayerControl : MonoBehaviour
                 jumpsLeft = manyJumps;
                 break;
             case "Enemy":
-                Destroy(this.gameObject);
+                _lifes--;
                 break;
         }
+    }
+
+    public int GetLifes()
+    {
+        return _lifes;
     }
 }
