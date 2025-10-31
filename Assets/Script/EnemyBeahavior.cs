@@ -39,7 +39,6 @@ public class EnemyBeahavior : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var collidedObject = collision.gameObject;
-        Debug.Log(collidedObject.tag);
         switch (collidedObject.tag)
         {
             case "Obstacle":

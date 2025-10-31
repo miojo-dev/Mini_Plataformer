@@ -26,7 +26,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (_lifes <= 0)
         {
-            Destroy(this.gameObject);
+            Kill();
             return false;
         }
 
@@ -68,6 +68,16 @@ public class PlayerControl : MonoBehaviour
 
     public int GetLifes()
     {
+        if (_lifes < 0)
+        {
+            return 0;
+        }
         return _lifes;
+    }
+
+    public void Kill()
+    {
+        _lifes = 0;
+        Destroy(this.gameObject);
     }
 }
